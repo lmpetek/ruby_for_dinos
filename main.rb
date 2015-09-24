@@ -10,12 +10,19 @@ configure do
 end
 
 get '/hi' do
-  "<h1>Hola Mundo!</h1>"
+  "<h1>Hello Word!</h1>"
+end
+
+get '/hola' do
+  erb :hola
+end
+
+get '/hi/:name&:last_name' do |name,last_name|
+  @persona = Persona.new(last_name ||= "petek",name)
+  erb :hello
 end
 
 get '/hi/:name' do |name|
-
-  @persona = Persona.new("salias",name)
-
+  @persona = Persona.new(last_name ||= "petek",name)
   erb :hello
 end
